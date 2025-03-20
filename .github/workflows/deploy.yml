@@ -37,7 +37,7 @@ jobs:
         run: terraform init
 
       - name: Vérifier le plan Terraform
-        run: terraform plan
+        run: terraform plan -out
 
       - name: Appliquer Terraform (déploiement)
         run: terraform apply -auto-approve
