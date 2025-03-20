@@ -18,10 +18,10 @@ jobs:
       - name: Checkout du code
         uses: actions/checkout@v4
 
-      # - name: Installer Terraform
-      #   uses: hashicorp/setup-terraform@v3
-      #   with:
-      #     terraform_version: 1.6.0
+      - name: Installer Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.6.0
 
       # - name: Configurer AWS credentials
       #   uses: aws-actions/configure-aws-credentials@v3
