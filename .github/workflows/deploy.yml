@@ -39,8 +39,8 @@ jobs:
       - name: Vérifier le plan Terraform
         run: terraform plan
 
-      # - name: Appliquer Terraform (déploiement)
-      #   run: terraform apply -auto-approve
+      - name: Appliquer Terraform (déploiement)
+        run: terraform apply -auto-approve
 
       # - name: Récupérer l'URL de l'API
       #   run: echo "API URL: $(terraform output api_gateway_url)"
