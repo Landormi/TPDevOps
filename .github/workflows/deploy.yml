@@ -23,10 +23,11 @@ jobs:
         with:
           terraform_version: 1.6.0
 
-      - name: Configurer AWS credentials
+      - name: Configurer AWS credentials avec clés d'accès
         uses: aws-actions/configure-aws-credentials@v3
         with:
-          role-to-assume: arn:aws:iam::947278783763:role/g2-GitHubActionsRole
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}  # Utilisation du secret
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}  # Utilisation du secret
           aws-region: eu-west-3
 
       # - name: Initialiser Terraform
