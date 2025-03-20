@@ -42,5 +42,15 @@ jobs:
       - name: Appliquer Terraform (déploiement)
         run: terraform apply -auto-approve
 
-      # - name: Récupérer l'URL de l'API
-      #   run: echo "API URL: $(terraform output api_gateway_url)"
+      - name: Récupérer l'URL de l'API
+        run: echo "API URL: $(terraform output api_gateway_url)"
+      
+      - name: Sauvegarder Terraform state
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git checkout -b state || git checkout state
+          mv terraform.tfstate tfstate/
+          git add tfstate/
+          git commit -m "Mise à jour Terraform state"
+          git push origin state
