@@ -30,8 +30,8 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}  # Utilisation du secret
           aws-region: eu-west-3
 
-      # - name: Initialiser Terraform
-      #   run: terraform init
+      - name: Initialiser Terraform
+        run: terraform init
 
       # - name: Vérifier le plan Terraform
       #   run: terraform plan
