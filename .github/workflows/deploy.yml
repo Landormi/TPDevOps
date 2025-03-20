@@ -18,25 +18,25 @@ jobs:
       - name: Checkout du code
         uses: actions/checkout@v4
 
-      - name: Installer Terraform
-        uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: 1.6.0  # Mets à jour si besoin
+      # - name: Installer Terraform
+      #   uses: hashicorp/setup-terraform@v3
+      #   with:
+      #     terraform_version: 1.6.0
 
-      - name: Configurer AWS credentials
-        uses: aws-actions/configure-aws-credentials@v3
-        with:
-          role-to-assume: arn:aws:iam::<AWS_ACCOUNT_ID>:role/GitHubActionsRole
-          aws-region: eu-west-3  # Remplace par ta région AWS
+      # - name: Configurer AWS credentials
+      #   uses: aws-actions/configure-aws-credentials@v3
+      #   with:
+      #     role-to-assume: arn:aws:iam::<AWS_ACCOUNT_ID>:role/GitHubActionsRole
+      #     aws-region: eu-west-3
 
-      - name: Initialiser Terraform
-        run: terraform init
+      # - name: Initialiser Terraform
+      #   run: terraform init
 
-      - name: Vérifier le plan Terraform
-        run: terraform plan
+      # - name: Vérifier le plan Terraform
+      #   run: terraform plan
 
-      - name: Appliquer Terraform (déploiement)
-        run: terraform apply -auto-approve
+      # - name: Appliquer Terraform (déploiement)
+      #   run: terraform apply -auto-approve
 
-      - name: Récupérer l'URL de l'API
-        run: echo "API URL: $(terraform output api_gateway_url)"
+      # - name: Récupérer l'URL de l'API
+      #   run: echo "API URL: $(terraform output api_gateway_url)"
