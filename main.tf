@@ -24,6 +24,10 @@ resource "aws_iam_role" "lambda_exec_role" {
       }
     }]
   })
+  lifecycle {
+    prevent_destroy = true
+    create_before_destroy = true
+  }
 }
 
 # Attache la politique de logs CloudWatch à la Lambda
