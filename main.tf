@@ -11,23 +11,24 @@ provider "aws" {
   region = "eu-west-3"
 }
 
-# IAM Role pour Lambda
-resource "aws_iam_role" "lambda_exec_role" {
+data "aws_iam_role" "existing_lambda_role" {
   name = "g2-lambda-exec-role"
+}
+
+resource "aws_iam_role" "lambda_exec_role" {
+  count = length(data.aws_iam_role.existing_lambda_role.id) == 0 ? 1 : 0
+
+  name               = "g2-lambda-exec-role"
   assume_role_policy = jsonencode({
-    Version = "2012-10-17",
+    Version = "2012-10-17"
     Statement = [{
-      Action    = "sts:AssumeRole",
-      Effect    = "Allow",
+      Action    = "sts:AssumeRole"
+      Effect    = "Allow"
       Principal = {
         Service = "lambda.amazonaws.com"
       }
     }]
   })
-  lifecycle {
-    prevent_destroy = true
-    create_before_destroy = true
-  }
 }
 
 # Attache la politique de logs CloudWatch à la Lambda
