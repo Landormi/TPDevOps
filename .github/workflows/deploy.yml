@@ -33,8 +33,6 @@ jobs:
       # - name: LS
       #   run: ls
       
-      - name: Importer le rôle IAM Lambda existant
-        run: terraform import aws_iam_role.lambda_exec_role g2-lambda-exec-role
 
       - name: Initialiser Terraform
         run: terraform init
