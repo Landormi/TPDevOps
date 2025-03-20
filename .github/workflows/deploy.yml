@@ -43,7 +43,7 @@ jobs:
         run: terraform apply -auto-approve
 
       - name: Récupérer l'URL de l'API
-        run: echo "API URL: $(terraform output api_gateway_url)"
+        run: echo `API URL  $(terraform output api_gateway_url)`
       
       - name: Sauvegarder Terraform state
         run: |
