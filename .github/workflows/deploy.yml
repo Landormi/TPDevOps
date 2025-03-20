@@ -26,12 +26,15 @@ jobs:
       - name: Configurer AWS credentials avec clés d'accès
         uses: aws-actions/configure-aws-credentials@v3
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}  # Utilisation du secret
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}  # Utilisation du secret
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-3
 
       # - name: LS
       #   run: ls
+      
+      - name: Importer le rôle IAM Lambda existant
+        run: terraform import aws_iam_role.lambda_exec_role g2-lambda-exec-role
 
       - name: Initialiser Terraform
         run: terraform init
