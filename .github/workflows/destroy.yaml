@@ -1,0 +1,40 @@
+name: Destroy Lambda Resources on AWS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # Permet un déclenchement manuel
+
+jobs:
+  destroy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Installer Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.6.0
+
+      - name: Configurer AWS credentials avec clés d'accès
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-3
+
+      - name: Initialiser Terraform
+        run: terraform init
+
+      - name: Vérifier le plan Terraform pour la destruction
+        run: terraform plan -destroy
+
+      - name: Appliquer la destruction de Terraform
+        run: terraform destroy -auto-approve
